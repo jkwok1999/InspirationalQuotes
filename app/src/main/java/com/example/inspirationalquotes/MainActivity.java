@@ -78,7 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
                 //Pairs retrofit with the JokeService interface and calls the getJokes() method/call
                 JokeService service = retrofit.create(JokeService.class);
-                Call<JokeLoreResponse> jokeCall = service.getJokes(category);
+                Call<JokeLoreResponse> jokeCall;
+                if (category != null) {
+                    jokeCall = service.getJokes(category);
+                } else {
+                    jokeCall = service.getJokes();
+                }
                 jokeCall.enqueue(new Callback<JokeLoreResponse>() {
                     //onResponse() method that displays the joke and picture if a connection to the online API is successful
                     @Override
