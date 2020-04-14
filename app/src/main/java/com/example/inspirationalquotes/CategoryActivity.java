@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,6 +16,7 @@ public class CategoryActivity extends AppCompatActivity {
     private Button btnAnimal, btnCareer, btnCelebrity, btnDev, btnExplicit, btnFashion, btnFood, btnHistory, btnMoney,
             btnMovie, btnMusic, btnPolitical, btnReligion, btnScience, btnSport, btnTravel;
     private String category;
+    private static final String TAG = "CategoryActivity";
 
     //This activity is intended to allow the user to select their own category of jokes
     //Initially I believed that implementing many buttons would be simpler than recyclerview
@@ -43,6 +45,7 @@ public class CategoryActivity extends AppCompatActivity {
         btnScience = findViewById(R.id.btnScience);
         btnSport = findViewById(R.id.btnSport);
         btnTravel = findViewById(R.id.btnTravel);
+        Log.d(TAG, "Pairing with XML: Success");
 
         //Set onClickListener for all the buttons to invoke the getCategory() method based on the button
         btnAnimal.setOnClickListener(new View.OnClickListener() {
@@ -163,7 +166,8 @@ public class CategoryActivity extends AppCompatActivity {
     //getCategory() method takes in a button, gets the text from the button (the category) and sets the category variable to the selected category
     public void getCategory(Button button) {
         category = button.getText().toString().toLowerCase();
-        System.out.println(category);
+        //System.out.println(category);
+        Log.d(TAG, "getCategory: Success - " + category);
     }
 
     //returnToMainActivity() method creates an intent to go back to the mainActivity, passing in the category variable that was set by the click earlier
@@ -171,5 +175,6 @@ public class CategoryActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra(CATEGORY,category);
         startActivity(intent);
+        Log.d(TAG, "returnToMainActivity: Success - " + category);
     }
 }

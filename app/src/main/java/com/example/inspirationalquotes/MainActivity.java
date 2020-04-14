@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         btnCategory = findViewById(R.id.btnCategory);
         imgChuckNorrisApproves = findViewById(R.id.imgChuckNorrisApproves);
         progressBar = findViewById(R.id.progressBar);
+        Log.d(TAG, "Pairing with XML: Success");
 
         //Set particular widgets that should not be visible upon the app opening to invisible
         imgChuckNorrisApproves.setVisibility(View.INVISIBLE); //This picture should only be visible when a joke is displayed
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
                         .baseUrl("https://api.chucknorris.io/")
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
+                Log.d(TAG, "Retrofit Initialisation: SUCCESS");
 
                 //Pairs retrofit with the JokeService interface and calls the getJokes() method/call
                 JokeService service = retrofit.create(JokeService.class);
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     jokeCall = service.getJokes();
                 }
+                Log.d(TAG, "Call: SUCCESS");
                 jokeCall.enqueue(new Callback<JokeLoreResponse>() {
                     //onResponse() method that displays the joke and picture if a connection to the online API is successful
                     @Override
@@ -110,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 Context context = v.getContext();
                 Intent intent = new Intent(context, CategoryActivity.class);
                 startActivity(intent);
+                Log.d(TAG, "Intent Started: SUCCESS");
             }
         });
     }
